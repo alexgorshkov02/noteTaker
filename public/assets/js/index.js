@@ -33,7 +33,7 @@ const getNotes = () =>
     },
   });
 
-const saveNote = (note) =>
+const  saveNote = (note) => 
   fetch('/api/notes', {
     method: 'POST',
     headers: {
@@ -71,11 +71,13 @@ const handleNoteSave = () => {
     title: noteTitle.value,
     text: noteText.value,
   };
-  saveNote(newNote).then(() => {
+  saveNote(newNote).then((res)=>res.json()).then((data) => {
+    console.log("DATA: ", data);
     getAndRenderNotes();
     renderActiveNote();
   });
 };
+
 
 // Delete the clicked note
 const handleNoteDelete = (e) => {
@@ -181,3 +183,7 @@ if (window.location.pathname === '/notes') {
 }
 
 getAndRenderNotes();
+
+// module.exports = {
+//   saveNote
+// };
