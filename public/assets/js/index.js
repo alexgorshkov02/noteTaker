@@ -72,7 +72,6 @@ const handleNoteSave = () => {
     text: noteText.value,
   };
   saveNote(newNote).then((res)=>res.json()).then((data) => {
-    console.log("DATA: ", data);
     getAndRenderNotes();
     renderActiveNote();
   });
@@ -87,14 +86,11 @@ const handleNoteDelete = (e) => {
   const note = e.target;
   const noteId = JSON.parse(note.parentElement.getAttribute('data-note')).id;
 
-  // console.log("TESTTEST123: ", noteId);
-
   if (activeNote.id === noteId) {
     activeNote = {};
   }
 
   deleteNote(noteId).then(() => {
-    console.log("TESTTEST123: ", noteId);
     getAndRenderNotes();
     renderActiveNote();
   });
